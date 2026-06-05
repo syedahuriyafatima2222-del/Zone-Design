@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zone Design — Graphic Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #111110;
+    --white: #fafaf8;
+    --gray-light: #f4f3f0;
+    --gray-mid: #e8e7e3;
+    --gray-text: #888880;
+    --accent: #c8a96e;
+    --accent-dark: #9a7d4a;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); line-height: 1.6; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--gray-mid);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.08em; color: var(--black); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-text); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 0 4rem 5rem;
+    position: relative; border-bottom: 0.5px solid var(--gray-mid);
+  }
+  .hero-bg { position: absolute; inset: 0; background: var(--gray-light); overflow: hidden; }
+  .hero-bg::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%; background: var(--white);
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-bg-circle { position: absolute; top: 10%; right: 8%; width: 300px; height: 300px; border-radius: 50%; border: 0.5px solid var(--gray-mid); }
+  .hero-bg-circle2 { position: absolute; top: 18%; right: 16%; width: 160px; height: 160px; border-radius: 50%; border: 0.5px solid var(--accent); opacity: 0.4; }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 8vw, 6.5rem); font-weight: 300; line-height: 1.0; margin-bottom: 1.5rem; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 0.95rem; color: var(--gray-text); max-width: 420px; line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 3px; transition: color 0.2s, border-color 0.2s; }
+  .hero-cta:hover { color: var(--accent); border-color: var(--accent); }
+  .hero-scroll { position: absolute; right: 4rem; bottom: 3rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-text); z-index: 2; }
+  .scroll-line { width: 0.5px; height: 50px; background: var(--gray-mid); animation: scrollAnim 2s ease-in-out infinite; }
+  @keyframes scrollAnim { 0%,100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.4); opacity: 0.4; } }
+
+  /* SECTION BASE */
+  section { padding: 5rem 4rem; }
+  .section-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1rem; }
+  .section-desc { font-size: 0.92rem; color: var(--gray-text); max-width: 480px; line-height: 1.8; }
+
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; border-bottom: 0.5px solid var(--gray-mid); }
+  .stat-row { display: flex; gap: 3rem; margin-top: 1rem; }
+  .stat { display: flex; flex-direction: column; gap: 0.3rem; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; line-height: 1; color: var(--black); }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--gray-text); text-transform: uppercase; }
+  .about-img-box { background: var(--gray-light); border: 0.5px solid var(--gray-mid); border-radius: 2px; height: 380px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .about-img-box::before { content: 'Z'; font-family: 'Cormorant Garamond', serif; font-size: 14rem; font-weight: 600; color: var(--gray-mid); line-height: 1; }
+  .about-badge { position: absolute; bottom: 1.5rem; right: 1.5rem; background: var(--black); color: var(--white); padding: 0.6rem 1.1rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* SERVICES */
+  .services { border-bottom: 0.5px solid var(--gray-mid); }
+  .services-head { margin-bottom: 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-mid); border: 0.5px solid var(--gray-mid); }
+  .service-card { background: var(--white); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.25s; }
+  .service-card:hover { background: var(--gray-light); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--accent); }
+  .service-icon { font-size: 1.5rem; color: var(--black); }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; }
+  .service-text { font-size: 0.85rem; color: var(--gray-text); line-height: 1.8; }
+
+  /* PORTFOLIO */
+  .portfolio { border-bottom: 0.5px solid var(--gray-mid); }
+  .portfolio-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .portfolio-filter { display: flex; gap: 1.5rem; }
+  .filter-btn { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-text); background: none; border: none; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  .filter-btn.active { color: var(--black); border-bottom-color: var(--black); }
+  .filter-btn:hover { color: var(--black); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .work-card { cursor: pointer; transition: transform 0.25s; }
+  .work-card:hover { transform: translateY(-4px); }
+  .work-img { background: var(--gray-light); border: 0.5px solid var(--gray-mid); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; overflow: hidden; position: relative; }
+  .work-placeholder { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gray-mid); }
+  .work-tag { position: absolute; top: 1rem; left: 1rem; background: var(--black); color: var(--white); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
+  .work-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .work-sub { font-size: 0.8rem; color: var(--gray-text); }
+
+  /* PROCESS */
+  .process { background: var(--black); color: var(--white); border-bottom: 0.5px solid #333; }
+  .process .section-label { color: var(--accent); }
+  .process .section-title { color: var(--white); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+  .step { border-top: 0.5px solid #333; padding-top: 1.5rem; }
+  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--accent); margin-bottom: 0.8rem; line-height: 1; }
+  .step-name { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+  .step-text { font-size: 0.82rem; color: #888; line-height: 1.8; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 3rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-text); }
+  .form-input { border: 0.5px solid var(--gray-mid); background: var(--white); padding: 0.8rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--black); outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input:focus { border-color: var(--accent); }
+  textarea.form-input { height: 120px; resize: none; }
+  .submit-btn { background: var(--black); color: var(--white); border: none; padding: 1rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; width: fit-content; transition: background 0.2s; }
+  .submit-btn:hover { background: var(--accent-dark); }
+  .contact-item { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1.2rem; }
+  .contact-item-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+  .contact-item-val { font-size: 0.95rem; color: var(--black); }
+
+  /* FOOTER */
+  footer { padding: 2rem 4rem; border-top: 0.5px solid var(--gray-mid); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.78rem; color: var(--gray-text); }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--black); }
+  .footer-logo span { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    section { padding: 3rem 1.5rem; }
+    .about, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .services-grid, .portfolio-grid, .process-steps { grid-template-columns: 1fr; }
+    .portfolio-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Zone<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle2"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">Graphic Design Studio</p>
+    <h1 class="hero-title">Where ideas<br>become <em>visual</em><br>stories.</h1>
+    <p class="hero-sub">Zone Design crafts minimal, purposeful identities and visuals that leave a lasting impression.</p>
+    <a href="#work" class="hero-cta">View Portfolio &rarr;</a>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <p class="section-label">About</p>
+    <h2 class="section-title">Design with<br>intention.</h2>
+    <p class="section-desc" style="margin-bottom:1.5rem;">Zone Design is a creative studio focused on building bold yet minimal visual identities. Every project is crafted with purpose — from concept to final pixel.</p>
+    <div class="stat-row">
+      <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Projects Done</span></div>
+      <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Years Experience</span></div>
+      <div class="stat"><span class="stat-num">30+</span><span class="stat-label">Happy Clients</span></div>
+    </div>
+  </div>
+  <div class="about-img-box"><div class="about-badge">Zone Design</div></div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-head">
+    <p class="section-label">Services</p>
+    <h2 class="section-title">What I do.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-icon">◈</div>
+      <p class="service-name">Logo Design</p>
+      <p class="service-text">Distinctive marks and wordmarks that capture the essence of your brand, built to last across every medium.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-icon">◉</div>
+      <p class="service-name">Social Media Graphics</p>
+      <p class="service-text">Eye-catching posts, stories, and templates designed to stop the scroll and grow your audience.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-icon">◇</div>
+      <p class="service-name">Branding & Identity</p>
+      <p class="service-text">Complete brand systems — color palettes, typography, guidelines — that speak consistently across all touchpoints.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="work">
+  <div class="portfolio-head">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected work.</h2>
+    </div>
+    <div class="portfolio-filter">
+      <button class="filter-btn active" onclick="filterWork(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterWork(this,'logo')">Logo</button>
+      <button class="filter-btn" onclick="filterWork(this,'social')">Social</button>
+      <button class="filter-btn" onclick="filterWork(this,'brand')">Branding</button>
+    </div>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid">
+    <div class="work-card" data-cat="logo">
+      <div class="work-img"><span class="work-tag">Logo</span><span class="work-placeholder">Aa</span></div>
+      <p class="work-title">Noir Café — Brand Mark</p><p class="work-sub">Logo Design · 2024</p>
+    </div>
+    <div class="work-card" data-cat="brand">
+      <div class="work-img"><span class="work-tag">Branding</span><span class="work-placeholder">▣</span></div>
+      <p class="work-title">Lumina Co. — Identity</p><p class="work-sub">Brand Identity · 2024</p>
+    </div>
+    <div class="work-card" data-cat="social">
+      <div class="work-img"><span class="work-tag">Social</span><span class="work-placeholder">◈</span></div>
+      <p class="work-title">@EcoWear — Feed Kit</p><p class="work-sub">Social Media · 2025</p>
+    </div>
+    <div class="work-card" data-cat="logo">
+      <div class="work-img"><span class="work-tag">Logo</span><span class="work-placeholder">Z</span></div>
+      <p class="work-title">Zephyr — Wordmark</p><p class="work-sub">Logo Design · 2025</p>
+    </div>
+    <div class="work-card" data-cat="social">
+      <div class="work-img"><span class="work-tag">Social</span><span class="work-placeholder">◉</span></div>
+      <p class="work-title">FitFuel — Instagram Pack</p><p class="work-sub">Social Media · 2025</p>
+    </div>
+    <div class="work-card" data-cat="brand">
+      <div class="work-img"><span class="work-tag">Branding</span><span class="work-placeholder">◇</span></div>
+      <p class="work-title">Studio Arka — Full Brand</p><p class="work-sub">Brand Identity · 2025</p>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <p class="section-label">Process</p>
+  <h2 class="section-title">How it works.</h2>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">01</div><p class="step-name">Discovery</p><p class="step-text">Understanding your brand, audience, and goals through a focused brief.</p></div>
+    <div class="step"><div class="step-num">02</div><p class="step-name">Concept</p><p class="step-text">Exploring ideas and directions before refining toward a clear visual concept.</p></div>
+    <div class="step"><div class="step-num">03</div><p class="step-name">Design</p><p class="step-text">Crafting polished, pixel-perfect visuals aligned with your brand voice.</p></div>
+    <div class="step"><div class="step-num">04</div><p class="step-name">Delivery</p><p class="step-text">Final files in all formats, ready to use across print and digital platforms.</p></div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom: 0.5px solid var(--gray-mid);">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's work<br>together.</h2>
+      <p class="section-desc" style="margin-bottom:2rem;">Have a project in mind? I'd love to hear about it. Fill out the form and I'll get back to you within 24 hours.</p>
+      <div class="contact-item"><span class="contact-item-label">Email</span><span class="contact-item-val">hello@zonedesign.com</span></div>
+      <div class="contact-item"><span class="contact-item-label">Instagram</span><span class="contact-item-val">@zone.design</span></div>
+      <div class="contact-item"><span class="contact-item-label">Based in</span><span class="contact-item-val">Pakistan</span></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="Ahmad Khan"></div>
+      <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="you@example.com"></div>
+      <div class="form-group"><label class="form-label">Service Needed</label><input class="form-input" type="text" placeholder="Logo Design, Branding..."></div>
+      <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" placeholder="Tell me about your project..."></textarea></div>
+      <button class="submit-btn">Send Message &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">&copy; 2025 Zone Design. All rights reserved.</span>
+  <span class="footer-logo">Zone<span>.</span></span>
+</footer>
+
+<script>
+  function filterWork(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.work-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
